@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every listing published on iqcars.net since October 2020. About 700,000 vehicles across 121 fields, including the third withdrawn by their sellers.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="iqcars.net Complete Listing Archive">
+<meta property="og:description" content="About 700,000 vehicle listings since Oct 2020, 121 fields each. Only 9% is visible on the live site.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231A284A'/%3E%3Ctext x='50' y='69' font-size='54' text-anchor='middle' fill='%232352FF' font-family='Inter,sans-serif' font-weight='800'%3EK%3C/text%3E%3C/svg%3E">
+<style>html{color-scheme:light dark;height:100%}body{min-height:100%}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>iqcars.net Listing Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --navy:#1A284A; --blue:#2352FF; --sky:#79C8FF; --cream:#F4EEE0;
+    --amber:#FAAD40; --ink:#1B1B1C; --slate:#44474d; --slate-soft:#6b6f78;
+    --line:#e7e2d6; --bg:#F4EEE0; --surface:#ffffff; --track:#e9e3d6;
+    --shadow:0 1px 2px rgba(26,40,74,.04), 0 8px 24px rgba(26,40,74,.06);
+    --radius:13px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --navy:#F4EEE0; --ink:#F4EEE0; --slate:#c8cdd8; --slate-soft:#98a0b0;
+      --line:#2a3a63; --bg:#141d33; --surface:#1A284A; --track:#26355c;
+      --blue:#5C82FF; --sky:#79C8FF; --amber:#FAAD40;
+      --shadow:0 1px 2px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.24);
+    }
+  }
+  :root[data-theme="dark"]{
+    --navy:#F4EEE0; --ink:#F4EEE0; --slate:#c8cdd8; --slate-soft:#98a0b0;
+    --line:#2a3a63; --bg:#141d33; --surface:#1A284A; --track:#26355c;
+    --blue:#5C82FF; --sky:#79C8FF; --amber:#FAAD40;
+    --shadow:0 1px 2px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.24);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(121,200,255,.18), transparent 60%),
+      radial-gradient(900px 480px at 0% 0%, rgba(35,82,255,.06), transparent 55%),
+      var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* one screen: rows are auto except the chart band, which takes the rest */
+  .board{
+    height:100dvh; max-width:1440px; margin:0 auto;
+    padding:16px 20px 14px;
+    display:grid; gap:11px;
+    grid-template-rows:auto auto auto minmax(0,1fr) auto;
+    overflow:hidden;
+  }
+
+  .top{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+  .brand{display:flex;align-items:baseline;gap:11px;min-width:0}
+  .kap{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);white-space:nowrap}
+  .brand h1{font-size:clamp(17px,1.7vw,23px);font-weight:800;letter-spacing:-.02em;margin:0;color:var(--navy);white-space:nowrap}
+  .period{font-size:12px;font-weight:500;color:var(--slate-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .kpi{background:var(--surface);border-radius:var(--radius);padding:12px 15px 11px;box-shadow:var(--shadow);border-top:3px solid var(--blue)}
+  .kpi.b2{border-top-color:var(--sky)} .kpi.b2 .n{font-size:clamp(20px,2.3vw,28px)} .kpi.b3{border-top-color:var(--amber)} .kpi.b4{border-top-color:var(--navy)}
+  .kpi .n{display:block;font-size:clamp(23px,2.7vw,33px);white-space:nowrap;font-weight:800;line-height:1;letter-spacing:-.035em;color:var(--navy);font-variant-numeric:tabular-nums}
+  .kpi .t{display:block;margin-top:5px;font-size:11.5px;font-weight:500;color:var(--slate-soft);line-height:1.3}
+
+  /* coverage strip */
+  .strip{
+    background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:11px 15px;display:grid;grid-template-columns:auto 1fr auto;
+    gap:14px;align-items:center;
+  }
+  .strip .lab{font-size:11.5px;font-weight:700;color:var(--navy);white-space:nowrap}
+  .strip .bars{display:grid;gap:5px}
+  .sb{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:center}
+  .sb .n{font-size:10.5px;font-weight:600;color:var(--slate-soft)}
+  .sb .t{position:relative;height:15px;background:var(--track);border-radius:99px;overflow:hidden}
+  .sb .t i{position:absolute;left:0;top:0;bottom:0;border-radius:99px}
+  .sb .v{position:absolute;top:50%;transform:translateY(-50%);left:9px;font-size:10.5px;font-weight:800;color:#fff}
+  .sb .v.out{left:auto;right:9px;color:var(--navy)}
+  .strip .out2{font-size:11.5px;font-weight:600;color:var(--slate-soft);white-space:nowrap}
+  .strip .out2 b{color:var(--navy);font-weight:800}
+
+  /* chart band */
+  .band{display:grid;grid-template-columns:1.35fr 1fr .85fr;gap:11px;min-height:0}
+  .panel{
+    background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:12px 15px 10px;display:flex;flex-direction:column;min-height:0;min-width:0;
+  }
+  .ph{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
+  .ph h2{font-size:12.5px;font-weight:700;margin:0;color:var(--navy);letter-spacing:-.01em;white-space:nowrap}
+  .ph span{font-size:10.5px;font-weight:600;color:var(--slate-soft);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .plot{flex:1;min-height:0}
+  svg{display:block;width:100%;height:100%}
+  .ax{font-size:9.5px;font-weight:500;fill:var(--slate-soft)}
+  .vl{font-size:10px;font-weight:700;fill:var(--navy);font-variant-numeric:tabular-nums}
+  .gl{stroke:var(--line);stroke-width:1}
+
+  .rank{display:grid;gap:6px;align-content:start}
+  .rrow{display:grid;grid-template-columns:64px 1fr 40px;gap:8px;align-items:center}
+  .rrow .nm{font-size:11px;font-weight:600;color:var(--slate);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rrow .tr{height:8px;background:var(--track);border-radius:99px;overflow:hidden}
+  .rrow .tr i{display:block;height:100%;border-radius:99px;background:var(--blue)}
+  .rrow .tr.s i{background:var(--sky)}
+  .rrow .vv{text-align:right;font-size:10.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  .sub{font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-soft);margin:0 0 7px}
+  .sub.mt{margin-top:12px}
+
+  .foot{display:flex;gap:6px 22px;flex-wrap:wrap;font-size:10.5px;color:var(--slate-soft);font-weight:500;padding:0 3px}
+  .foot b{color:var(--slate);font-weight:700;font-variant-numeric:tabular-nums}
+
+  /* below a laptop: let it breathe and scroll rather than crush */
+  @media (max-width:1000px), (max-height:540px){
+    .board{height:auto;overflow:visible;grid-template-rows:none;padding:16px 14px 22px}
+    .band{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .plot{height:190px}
+    .strip{grid-template-columns:1fr}
+  }
+
+  /* ---------- screen two ---------- */
+  .sheet{max-width:1440px;margin:0 auto;padding:6px 20px 34px;display:grid;gap:12px}
+  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:16px 3px 2px}
+  .shead h2{font-size:clamp(17px,1.7vw,22px);font-weight:800;letter-spacing:-.02em;margin:0;color:var(--navy)}
+  .shead span{font-size:11.5px;font-weight:600;color:var(--slate-soft)}
+
+  .recov{
+    background:#1A284A;border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+  }
+  .recov .big{display:flex;gap:28px}
+  .recov .st b{
+    display:block;font-size:clamp(26px,3.2vw,38px);font-weight:800;line-height:1;
+    letter-spacing:-.035em;color:#FAAD40;font-variant-numeric:tabular-nums;
+  }
+  .recov .st i{display:block;margin-top:6px;font-size:11.5px;font-style:normal;font-weight:600;color:#c9d3ea;white-space:nowrap}
+  .recov p{margin:0;font-size:13.5px;line-height:1.5;color:#e4e9f5;max-width:60ch}
+  .recov p b{color:#ffffff;font-weight:700}
+
+  .fields{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .fg{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px 15px}
+  .fg h3{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin:0 0 11px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:11.5px;font-weight:600;color:var(--slate);background:var(--track);border-radius:99px;padding:4px 10px;white-space:nowrap}
+  .chip.full{background:rgba(35,82,255,.10);color:var(--blue)}
+  .fg .cv2{margin-top:11px;font-size:10.5px;font-weight:700;color:var(--slate-soft);font-variant-numeric:tabular-nums}
+
+  @media(max-width:1000px){.fields{grid-template-columns:repeat(2,1fr)}.recov{grid-template-columns:1fr;gap:16px}}
+  @media(max-width:620px){.fields{grid-template-columns:1fr}.recov .big{gap:20px}}
+
+  /* ---------- year distribution ---------- */
+  .yband{display:grid;grid-template-columns:1.6fr 1fr;gap:12px}
+  .yband .panel{min-height:236px}
+  .ycap{margin:9px 0 0;font-size:10.5px;font-weight:600;line-height:1.45;color:var(--slate-soft)}
+  @media(max-width:1000px){.yband{grid-template-columns:1fr}}
+</style>
+
+</head>
+<body>
+<div class="board">
+
+  <div class="top">
+    <div class="brand">
+      <span class="kap">KAPITA Research</span>
+      <h1>iqcars.net Complete Listing Archive</h1>
+    </div>
+    <div class="period">Every listing since launch, Oct 2020 to Sep 2026</div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><span class="n">+700K</span><span class="t">vehicle listings</span></div>
+    <div class="kpi b2"><span class="n">Oct 2020</span><span class="t">first listing, 6 days before launch</span></div>
+    <div class="kpi b3"><span class="n">9%</span><span class="t">visible on the live site</span></div>
+    <div class="kpi b4"><span class="n">~192K</span><span class="t">recorded sales</span></div>
+  </div>
+
+  <div class="strip">
+    <span class="lab">Live site vs archive</span>
+    <div class="bars">
+      <div class="sb"><span class="n">Live site</span><span class="t"><i style="width:9%;background:var(--sky)"></i><b class="v out">~62K</b></span></div>
+      <div class="sb"><span class="n">Archive</span><span class="t"><i style="width:100%;background:var(--blue)"></i><b class="v">+700K</b></span></div>
+    </div>
+    <span class="out2">~232K withdrawn, <b>~192K sold</b></span>
+  </div>
+
+  <div class="band">
+    <div class="panel">
+      <div class="ph"><h2>Monthly listings since Oct 2020</h2><span>72 months, no gaps. Sep is 6 days</span></div>
+      <div class="plot"><svg id="volume" viewBox="0 0 560 210" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Monthly vehicle listings, October 2020 to August 2026"></svg></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h2>Median asking price</h2><span>USD, down 37% since 2023</span></div>
+      <div class="plot"><svg id="price" viewBox="0 0 420 210" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Median asking price in US dollars by year, 2020 to 2026"></svg></div>
+    </div>
+    <div class="panel">
+      <p class="sub">Marque</p>
+      <div class="rank" id="brands"></div>
+      <p class="sub mt">Origin</p>
+      <div class="rank" id="origin"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>Fields per listing <b>121</b></div>
+    <div>Baghdad <b>~217K</b>, Erbil <b>~170K</b>, Sulaymaniyah <b>~51K</b></div>
+  </div>
+</div>
+
+
+<div class="sheet">
+
+  <div class="shead">
+    <h2>Listings per day, by year</h2>
+    <span>2020 and 2026 are part years, so the daily rate is the comparable measure</span>
+  </div>
+
+  <div class="yband">
+    <div class="panel">
+      <div class="ph"><h2>Daily listing rate</h2><span>11x since 2020</span></div>
+      <div class="plot"><svg id="perday" viewBox="0 0 620 214" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vehicle listings published per day, by year, 2020 to 2026"></svg></div>
+    </div>
+    <div class="panel">
+      <p class="sub">Total listings by year</p>
+      <div class="rank" id="years"></div>
+      <p class="ycap">2020 opens on 19 October and the archive's newest listing is 6 September 2026, so both years cover part of a year. Their totals sit below the trend; their daily rate does not.</p>
+    </div>
+  </div>
+
+  <div class="shead">
+    <h2>Including every listing the sellers removed</h2>
+    <span>1 in 3 is no longer anywhere online</span>
+  </div>
+
+  <div class="recov">
+    <div class="big">
+      <span class="st"><b>~232K</b><i>withdrawn by the seller</i></span>
+      <span class="st"><b>~192K</b><i>recorded a sale</i></span>
+    </div>
+    <p>A listing disappears from the site once it sells or expires, and nothing on the live platform records that it was ever there. <b>Those listings are held here with the full record intact</b>, which is what makes outcomes, time on market and realised price movement measurable at all.</p>
+  </div>
+
+  <div class="shead">
+    <h2>121 fields on every listing</h2>
+    <span>share of listings carrying the field</span>
+  </div>
+
+  <div class="fields">
+<div class="fg"><h3>Vehicle</h3><div class="chips"><span class="chip full">Make</span><span class="chip full">Model</span><span class="chip full">Trim</span><span class="chip full">Year</span><span class="chip full">Mileage</span><span class="chip full">Engine</span><span class="chip full">Cylinders</span><span class="chip full">Fuel</span><span class="chip full">Transmission</span><span class="chip full">Colour</span><span class="chip full">Seats</span><span class="chip full">Upholstery</span></div><div class="cv2">100% populated</div></div>
+    <div class="fg"><h3>Condition and history</h3><div class="chips"><span class="chip full">Condition grade</span><span class="chip full">Paint and accident history</span><span class="chip full">Plate type</span><span class="chip full">Plate governorate</span><span class="chip">Official warranty</span></div><div class="cv2">Paint history on 99.9%</div></div>
+    <div class="fg"><h3>Price</h3><div class="chips"><span class="chip full">Asking price USD</span><span class="chip full">Asking price IQD</span><span class="chip full">Currency</span><span class="chip">Price label</span></div><div class="cv2">91% carry a price</div></div>
+    <div class="fg"><h3>Seller and location</h3><div class="chips"><span class="chip full">Governorate</span><span class="chip full">Import origin</span><span class="chip">Dealer or private</span><span class="chip">Showroom name</span><span class="chip">Showroom type</span></div><div class="cv2">Governorate and origin on 100%</div></div>
+    <div class="fg"><h3>Lifecycle</h3><div class="chips"><span class="chip full">First published</span><span class="chip full">Last republished</span><span class="chip">Sold</span><span class="chip">Withdrawn</span><span class="chip">Expired</span></div><div class="cv2">Dates on 100%</div></div>
+    <div class="fg"><h3>Detail and media</h3><div class="chips"><span class="chip full">Image links</span><span class="chip full">Image count</span><span class="chip">Seller description</span><span class="chip">Specification list</span><span class="chip">Highlights</span></div><div class="cv2">6M image links, median 8 per listing. Links and metadata, not the files</div></div>
+  </div>
+</div>
+
+<script>
+const MONTHS=[957,2229,2102,1980,1742,1151,1612,1463,1560,1426,2391,3368,3059,2988,3585,3878,3978,4060,4075,4029,4505,4076,4871,3942,5210,4721,4632,5046,4686,4827,4935,5792,4603,5205,5446,5703,6145,4925,5199,5587,6112,7551,7205,8678,7798,9170,8151,10053,13904,12302,14938,15487,13703,12654,13138,13213,14743,27577,29096,28360,32245,28258,24543,26033,26016,19460,21444,21492,22471,25822,23800,5000];
+const TICKS={0:"2020",3:"2021",15:"2022",27:"2023",39:"2024",51:"2025",63:"2026"};
+const PRICE=[["2020",19500],["2021",20000],["2022",22000],["2023",24500],["2024",21000],["2025",17000],["2026",15500]];
+const BRANDS=[["Toyota",132],["Kia",92],["Hyundai",85],["Nissan",56],["Jeep",39],["Chevrolet",38]];
+const ORIGIN=[["US",49],["GCC",33],["Iraq",8],["CN",3]];
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
+
+(function(){
+  const s=document.getElementById("volume"),W=560,H=210,L=34,R=6,T=14,B=22;
+  const iw=W-L-R,ih=H-T-B,max=35000,n=MONTHS.length;
+  const x=i=>L+i/(n-1)*iw, y=v=>T+ih-v/max*ih;
+  [0,10000,20000,30000].forEach(v=>{
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),class:"gl"}));
+    const t=el("text",{x:L-6,y:y(v)+3,class:"ax","text-anchor":"end"});
+    t.textContent=v?v/1000+"k":"0";s.appendChild(t);
+  });
+  let d=`M ${x(0)} ${y(MONTHS[0])}`;
+  MONTHS.forEach((v,i)=>{if(i)d+=` L ${x(i)} ${y(v)}`});
+  s.appendChild(el("path",{d:`${d} L ${x(n-1)} ${T+ih} L ${x(0)} ${T+ih} Z`,fill:"var(--blue)","fill-opacity":".13"}));
+  s.appendChild(el("path",{d,fill:"none",stroke:"var(--blue)","stroke-width":"2","stroke-linejoin":"round","stroke-linecap":"round"}));
+  const pi=MONTHS.indexOf(Math.max(...MONTHS));
+  s.appendChild(el("circle",{cx:x(pi),cy:y(MONTHS[pi]),r:3.4,fill:"var(--amber)"}));
+  const pl=el("text",{x:x(pi),y:y(MONTHS[pi])-7,class:"vl","text-anchor":"middle"});
+  pl.textContent="32k";s.appendChild(pl);
+  for(const i in TICKS){
+    const t=el("text",{x:x(+i),y:H-6,class:"ax","text-anchor":"middle"});
+    t.textContent=TICKS[i];s.appendChild(t);
+  }
+})();
+
+(function(){
+  const s=document.getElementById("price"),W=420,H=210,L=38,R=8,T=22,B=22;
+  const iw=W-L-R,ih=H-T-B,max=30000,bw=iw/PRICE.length,pad=bw*.3;
+  const y=v=>T+ih-v/max*ih;
+  [0,10000,20000].forEach(v=>{
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),class:"gl"}));
+    const t=el("text",{x:L-6,y:y(v)+3,class:"ax","text-anchor":"end"});
+    t.textContent="$"+v/1000+"k";s.appendChild(t);
+  });
+  PRICE.forEach(([yr,v],i)=>{
+    const bx=L+i*bw+pad/2,w=bw-pad,hot=v===24500||yr==="2026";
+    s.appendChild(el("rect",{x:bx,y:y(v),width:w,height:T+ih-y(v),rx:4,
+      fill:hot?"var(--amber)":"var(--blue)","fill-opacity":hot?"1":".82"}));
+    const l=el("text",{x:bx+w/2,y:y(v)-6,class:"vl","text-anchor":"middle"});
+    l.textContent=(v/1000).toFixed(1).replace(".0","")+"k";s.appendChild(l);
+    const a=el("text",{x:bx+w/2,y:H-6,class:"ax","text-anchor":"middle"});
+    a.textContent=yr.slice(2);s.appendChild(a);
+  });
+})();
+
+function rank(id,rows,sky,suf){
+  const host=document.getElementById(id),max=rows[0][1];
+  rows.forEach(([nm,v])=>{
+    const r=document.createElement("div");r.className="rrow";
+    r.innerHTML=`<span class="nm">${nm}</span><span class="tr${sky?" s":""}">`+
+      `<i style="width:${(v/max*100).toFixed(1)}%"></i></span><span class="vv">${v}${suf}</span>`;
+    host.appendChild(r);
+  });
+}
+rank("brands",BRANDS,false,"K");
+rank("origin",ORIGIN,true,"%");
+
+const PERDAY=[["2020",71],["2021",72],["2022",142],["2023",171],["2024",305],["2025",693],["2026",773]];
+const YTOT=[["2020",5.3],["2021",26],["2022",52],["2023",63],["2024",111],["2025",253],["2026",192]];
+
+(function(){
+  const s=document.getElementById("perday"),W=620,H=214,L=40,R=10,T=26,B=24;
+  const iw=W-L-R,ih=H-T-B,max=900,bw=iw/PERDAY.length,pad=bw*.28;
+  const y=v=>T+ih-v/max*ih;
+  [0,250,500,750].forEach(v=>{
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:y(v),y2:y(v),class:"gl"}));
+    const t=el("text",{x:L-7,y:y(v)+3,class:"ax","text-anchor":"end"});
+    t.textContent=v;s.appendChild(t);
+  });
+  PERDAY.forEach(([yr,v],i)=>{
+    const bx=L+i*bw+pad/2, w=bw-pad;
+    s.appendChild(el("rect",{x:bx,y:y(v),width:w,height:T+ih-y(v),rx:3,fill:"var(--blue)"}));
+    const lb=el("text",{x:bx+w/2,y:y(v)-6,class:"vl","text-anchor":"middle"});
+    lb.textContent=v;s.appendChild(lb);
+    const ax=el("text",{x:bx+w/2,y:H-7,class:"ax","text-anchor":"middle"});
+    ax.textContent=yr;s.appendChild(ax);
+  });
+})();
+
+(function(){
+  const host=document.getElementById("years"),max=253;
+  YTOT.forEach(([yr,v])=>{
+    const r=document.createElement("div");r.className="rrow";
+    r.innerHTML=`<span class="nm">${yr}</span><span class="tr">`+
+      `<i style="width:${(v/max*100).toFixed(1)}%"></i></span><span class="vv">${v}K</span>`;
+    host.appendChild(r);
+  });
+})();
+</script>
+
+</body>
+</html>
